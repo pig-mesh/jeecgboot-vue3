@@ -195,3 +195,9 @@ export async function validateCasLogin(params) {
   let url = Api.validateCasLogin;
   return defHttp.get({ url: url, params });
 }
+
+export const loginSso = (ssocode :string) => {
+  return defHttp.post<LoginResultModel>({
+    url: '/sys/loginByCode?code=' + ssocode,
+  })
+}

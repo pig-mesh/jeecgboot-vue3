@@ -7,7 +7,7 @@ import { PageEnum } from '/@/enums/pageEnum';
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY, LOGIN_INFO_KEY, DB_DICT_DATA_KEY, TENANT_ID } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache, removeAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams, ThirdLoginParams } from '/@/api/sys/model/userModel';
-import { doLogout, getUserInfo, loginApi, phoneLoginApi, thirdLogin } from '/@/api/sys/user';
+import { doLogout, getUserInfo, loginApi, phoneLoginApi, thirdLogin, loginSso } from '/@/api/sys/user';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -142,6 +142,13 @@ export const useUserStore = defineStore({
       } catch (error) {
         return Promise.reject(error);
       }
+    },
+
+    async ssoLogin(ssocode: string){
+      const data = await loginSso(ssocode);
+      const { token } = data;
+      this.setToken(token);
+      return this.afterLoginAction(true, data);
     },
     /**
      * 登录完成处理

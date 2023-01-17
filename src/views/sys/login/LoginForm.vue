@@ -67,8 +67,8 @@
         </Button>
       </ACol>
       <ACol :md="7" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.REGISTER)">
-          {{ t('sys.login.registerButton') }}
+        <Button size="large" class="mt-4 enter-x" block @click="handleSSOLogin">
+          PIG SSO 登录
         </Button>
       </ACol>
     </ARow>
@@ -180,6 +180,10 @@
       randCodeData.randCodeImage = res;
       randCodeData.requestCodeSuccess = true;
     });
+  }
+
+  const handleSSOLogin = () => {
+    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeesite&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso"
   }
 
   /**
