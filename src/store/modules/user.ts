@@ -296,7 +296,8 @@ export const useUserStore = defineStore({
         title: t('sys.app.logoutTip'),
         content: t('sys.app.logoutMessage'),
         onOk: async () => {
-          await this.logout(true);
+          await this.logout(false);
+          location.href = 'http://127.0.0.1:3000/logout?redirect_url=http://127.0.0.1:3100/';
         },
       });
     },

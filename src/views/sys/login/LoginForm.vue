@@ -183,7 +183,7 @@
   }
 
   const handleSSOLogin = () => {
-    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeesite&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso"
+    window.location.href = "http://127.0.0.1:3000/oauth2/authorize?client_id=jeecg-boot&response_type=code&scope=server&redirect_uri=http://127.0.0.1:3100/sso"
   }
 
   /**
